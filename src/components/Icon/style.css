@@ -1,0 +1,26 @@
+.v-icon {
+  --v-icon-color: inherit;
+  /* 主要功能：定义一个CSS变量 --v-icon-color，并将其初始值设置为 inherit。这个变量用于控制 .v-icon 类选择器内的图标颜色，使其能够继承父元素的颜色 */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  fill: currentColor;
+  color: var(--v-icon-color);
+  font-size: inherit;
+}
+
+@each $val in primary, info, success, warning, danger {
+  .v-icon--$(val) {
+    --v-icon-color: var(--v-color-$(val));
+  }
+}
+/* 
+
+
+
+
+通过 @each 指令遍历一个颜色列表，并为每个颜色生成一个对应的类选择器。在每个类选择器中，设置了一个 CSS 变量 --v-icon-color，其值为另一个 CSS 变量 --v-color-$(val)。这样，我们可以通过不同的类选择器，动态地改变图标的颜色。
+
+主要功能：动态生成图标颜色类选择器，并通过 CSS 变量控制图标颜色。
+*/

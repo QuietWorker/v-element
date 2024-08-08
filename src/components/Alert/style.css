@@ -1,0 +1,70 @@
+.v-alert {
+  --v-alert-padding: 8px 16px;
+  --v-alert-border-radius-base: var(--v-border-radius-base);
+  --v-alert-bg-color: var(--v-color-white);
+  --v-alert-content-font-size: 13px;
+  --v-alert-icon-size: 16px;
+  --v-alert-text-color: var(--v-text-color-primary);
+  --v-alert-top-margin: 20px;
+}
+
+.v-alert {
+  padding: var(--v-alert-padding);
+  margin: 0;
+  box-sizing: border-box;
+  border-radius: var(--v-alert-border-radius-base);
+  position: relative;
+  background-color: var(--v-alert-bg-color);
+  overflow: hidden;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  transition: opacity var(--v-transition-duration);
+  margin-top: var(--v-alert-top-margin);
+  .v-alert__content {
+    font-size: var(--v-alert-content-font-size);
+    color: var(--v-alert-text-color);
+    line-height: 18px;
+    vertical-align: text-top;
+    .v-alert__title {
+      font-size: 16px;
+    }
+  }
+  .v-alert__close {
+    font-size: var(--v-alert-content-font-size);
+    opacity: 1;
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    cursor: pointer;
+    .v-icon {
+      vertical-align: top;
+    }
+  }
+  &.v-alert__light {
+    .v-alert__close {
+      color: var(--v-text-color-placeholder);
+    }
+  }
+  &.v-alert__dark {
+    .v-alert__close {
+      color: var(--v-color-white);
+    }
+  }
+}
+
+.v-alert-fade-enter-from,
+.v-alert-fade-leave-to {
+  opacity: 0;
+}
+
+@each $val in success, warning, info, danger {
+  .v-alert__$(val).v-alert__light {
+    --v-alert-text-color: var(--v-color-$(val));
+    --v-alert-bg-color: var(--v-color-$(val)-light-9);
+  }
+  .v-alert__$(val).v-alert__dark {
+    --v-alert-text-color: var(--v-color-white);
+    --v-alert-bg-color: var(--v-color-$(val));
+  }
+}
